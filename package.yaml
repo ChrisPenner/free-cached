@@ -25,9 +25,12 @@ dependencies:
 - cereal
 - aeson
 - recursion-schemes
+- mtl
 
 library:
   source-dirs: src
+  ghc-options:
+    - -Wall
 
 executables:
   free-recorder-exe:
