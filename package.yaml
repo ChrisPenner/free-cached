@@ -1,0 +1,52 @@
+name:                free-recorder
+version:             0.1.0.0
+github:              "ChrisPenner/free-recorder"
+license:             BSD3
+author:              "Chris Penner"
+maintainer:          "christopher.penner@gmail.com"
+copyright:           "Chris Penner"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Other
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/ChrisPenner/free-recorder#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- free
+- cereal
+- aeson
+- recursion-schemes
+
+library:
+  source-dirs: src
+
+executables:
+  free-recorder-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - free-recorder
+
+tests:
+  free-recorder-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - free-recorder
