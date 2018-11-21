@@ -1,9 +1,9 @@
 {-# LANGUAGE RankNTypes #-}
 {-# LANGUAGE ScopedTypeVariables #-}
 {-# LANGUAGE TupleSections #-}
-module Lifted where
+module Control.Monad.Free.Cached where
 
-import Lib
+import ToyMonad
 import Control.Monad.Free
 import qualified Control.Monad.Trans.Free      as TF
 import Data.Dynamic
@@ -58,12 +58,12 @@ iterCachedOrRefresh
 iterCachedOrRefresh cacheInterp interp cache fr =
   maybe (iterM interp fr) pure (iterFromCache cacheInterp cache fr)
 
-runAndCacheMyAction :: IO ([Dynamic], String)
-runAndCacheMyAction = iterAndCache myActionCacher myActionInterpIO prog
+runAndCacheToyMonad :: IO ([Dynamic], String)
+runAndCacheToyMonad = iterAndCache toyMonadCacher toyMonadInterpIO prog
 
-runFromCacheMyAction :: [Dynamic] -> Free MyActions a -> Maybe a
-runFromCacheMyAction = iterFromCache myActionUseCache
+runFromCacheToyMonad :: [Dynamic] -> Free ToyMonad a -> Maybe a
+runFromCacheToyMonad = iterFromCache toyMonadUseCache
 
-runCachedOrInterpMyAction :: [Dynamic] -> Free MyActions a -> IO a
-runCachedOrInterpMyAction cache =
-  iterCachedOrRefresh myActionUseCache myActionInterpIO cache
+runCachedOrInterpToyMonad :: [Dynamic] -> Free ToyMonad a -> IO a
+runCachedOrInterpToyMonad cache =
+  iterCachedOrRefresh toyMonadUseCache toyMonadInterpIO cache

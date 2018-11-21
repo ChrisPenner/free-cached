@@ -38,5 +38,9 @@ buildCache alg = cata alg'
     rs      <- mr
     return (r : rs)
 
--- progCache :: IO [Dynamic]
--- progCache = buildCache myActionCacher prog
+
+-- myActionCacher :: ToyMonad x -> IO (Dynamic, x)
+-- myActionCacher (ReadFile path f) = do
+--   contents <- readFile path
+--   return (toDyn contents, f contents)
+-- myActionCacher (WriteFile _ _ x) = pure (toDyn (), x)

@@ -1,0 +1,80 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 1e63464c81c80d2469baf08f8541177e4248cc154fb569ea278c008b5ef5389d
+
+name:           free-cached
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/ChrisPenner/free-cached#readme>
+homepage:       https://github.com/ChrisPenner/free-cached#readme
+bug-reports:    https://github.com/ChrisPenner/free-cached/issues
+author:         Chris Penner
+maintainer:     christopher.penner@gmail.com
+copyright:      Chris Penner
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/ChrisPenner/free-cached
+
+library
+  exposed-modules:
+      Control.Monad.Free.Cached
+      Simple
+      ToyMonad
+  other-modules:
+      Paths_free_cached
+  hs-source-dirs:
+      src
+  ghc-options: -Wall
+  build-depends:
+      aeson
+    , base >=4.7 && <5
+    , cereal
+    , free
+    , mtl
+    , recursion-schemes
+  default-language: Haskell2010
+
+executable free-cached-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_free_cached
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      aeson
+    , base >=4.7 && <5
+    , cereal
+    , free
+    , free-cached
+    , mtl
+    , recursion-schemes
+  default-language: Haskell2010
+
+test-suite free-cached-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_free_cached
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      aeson
+    , base >=4.7 && <5
+    , cereal
+    , free
+    , free-cached
+    , mtl
+    , recursion-schemes
+  default-language: Haskell2010
